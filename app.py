@@ -1,24 +1,19 @@
-from flask import Flask
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def hello_world():
-    return """
-         <html><body>
-             <h2>Test Home Page</h2>
-             <form action="/test">
-                 Enter TV series <input type='text' name='showname'>
-                 <input type='submit' value='Search and Plot'>
-             </form>
-         </body></html>
-         """
+def landing_page():
+    return render_template('landing.html')
 
 
-@app.route('/test')
-def test():
-    return 'test'
+@app.route('/', methods=['POST'])
+def check_search():
+    text = request.form['showname']
+    return text
+
+# check if input is an actual tv show, if not tell user, if it is, show graphs
 
 
 if __name__ == '__main__':
