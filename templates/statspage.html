@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>[App Name] Stats Page</title>
+</head>
+<body>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<div class="chart" id="bargraph">
+    <script>
+        var graphs = {{plot | safe}};
+        Plotly.plot('linechart',graphs,{});
+    </script>
+</div>
+</body>
+</html>

@@ -12,12 +12,14 @@ def landing_page():
 @app.route('/', methods=['POST'])
 def display_stats():
     text = request.form['showname']
-    from showstats import print_results
-    return print_results(text)
+    from showstats import create_chart
+    chart = create_chart(text)
+
+    #return render_template('statspage.html', plot=chart)
+    return str(chart)
 
 
 # check if input is an actual tv show, if not tell user, if it is, show graphs
-
 
 
 if __name__ == '__main__':
