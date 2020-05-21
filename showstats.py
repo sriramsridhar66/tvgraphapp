@@ -29,16 +29,21 @@ def create_chart(search):
             fig.add_trace(go.Scatter(x=x, y=y, name=f'Season {season_nr}',
                                      line=dict(color=get_color(), width=4)))
 
-        fig.update_yaxes(tickvals=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        #fig.update_yaxes(tickvals=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         fig.update_layout(title=f'{str(series)}',
                           xaxis_title='Episode',
                           yaxis_title='Rating',
                           yaxis=dict(
-                              range=[0, 10]
+                              range=[0, 10],
+                              dtick=1
+                          ),
+                          xaxis=dict(
+                              tickmode='linear',
+                              tick0=1,
+                              dtick=1
                           )
                           )
 
-        fig.show()
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
         return graphJSON

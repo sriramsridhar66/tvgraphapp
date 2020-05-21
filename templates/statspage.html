@@ -3,14 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>[App Name] Stats Page</title>
+
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
 </head>
 <body>
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<div class="chart" id="bargraph">
+
+</body>
+
+    <div class="chart" id="bargraph">
     <script>
         var graphs = {{plot | safe}};
-        Plotly.plot('linechart',graphs,{});
+        Plotly.plot('bargraph',graphs,{});
     </script>
 </div>
-</body>
 </html>

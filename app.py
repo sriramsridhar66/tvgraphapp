@@ -15,8 +15,8 @@ def display_stats():
     from showstats import create_chart
     chart = create_chart(text)
 
-    #return render_template('statspage.html', plot=chart)
-    return str(chart)
+    return render_template('statspage.html', plot=chart)
+    #return str(chart)
 
 
 # check if input is an actual tv show, if not tell user, if it is, show graphs
