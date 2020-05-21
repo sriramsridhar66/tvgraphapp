@@ -26,15 +26,35 @@ def create_chart(search):
 
                 # to_return += ('Episode ' + str(season_nr) + '.' + str(episode_nr) + ': ' + episode.get(
                 # 'title') + ' - rating: ' + str(episode.get('rating'))) + '\n'
-        fig.add_trace(go.Scatter(x=x, y=y, name=f'Season {season_nr}',
-                                 line=dict(color='firebrick', width=4)))
+            fig.add_trace(go.Scatter(x=x, y=y, name=f'Season {season_nr}',
+                                     line=dict(color=get_color(), width=4)))
 
+        fig.update_yaxes(tickvals=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         fig.update_layout(title=f'{str(series)}',
                           xaxis_title='Episode',
-                          yaxis_title='Rating')
+                          yaxis_title='Rating',
+                          yaxis=dict(
+                              range=[0, 10]
+                          )
+                          )
+
         fig.show()
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
         return graphJSON
-    except:
-        return "Cannot get episodes, searched title is a " + series['kind']
+    except Exception as e:
+        return str(e)
+
+
+def get_color():
+    import matplotlib, random
+
+    hex_colors_dic = {}
+    rgb_colors_dic = {}
+    hex_colors_only = []
+    for name, hex in matplotlib.colors.cnames.items():
+        hex_colors_only.append(hex)
+        hex_colors_dic[name] = hex
+        rgb_colors_dic[name] = matplotlib.colors.to_rgb(hex)
+
+    return random.choice(hex_colors_only)
