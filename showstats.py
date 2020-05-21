@@ -8,8 +8,6 @@ import json
 
 def create_chart(search):
     search = IMDb().search_movie(search + ' tv')
-    # for movie in search:
-    # print(movie)
     series = search[0]
     try:
         IMDb().update(series, 'episodes')
@@ -24,13 +22,12 @@ def create_chart(search):
                 x.append(episode_nr)
                 y.append(episode.get('rating'))
 
-                # to_return += ('Episode ' + str(season_nr) + '.' + str(episode_nr) + ': ' + episode.get(
-                # 'title') + ' - rating: ' + str(episode.get('rating'))) + '\n'
+            if x[0] is None or y[0] is None:
+                break
             fig.add_trace(go.Scatter(x=x, y=y, name=f'Season {season_nr}',
-                                     line=dict(color=get_color(), width=4)))
+                                     line=dict(color=get_rand_color(), width=4)))
 
-        #fig.update_yaxes(tickvals=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-        fig.update_layout(title=f'{str(series)}',
+        fig.update_layout(
                           xaxis_title='Episode',
                           yaxis_title='Rating',
                           yaxis=dict(
@@ -38,7 +35,6 @@ def create_chart(search):
                               dtick=1
                           ),
                           xaxis=dict(
-                              tickmode='linear',
                               tick0=1,
                               dtick=1
                           )
@@ -46,12 +42,12 @@ def create_chart(search):
 
         graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
-        return graphJSON
+        return graphJSON, str(series)
     except Exception as e:
         return str(e)
 
 
-def get_color():
+def get_rand_color():
     import matplotlib, random
 
     hex_colors_dic = {}

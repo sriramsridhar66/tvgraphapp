@@ -1,5 +1,4 @@
 from flask import Flask, request, render_template
-from imdb import IMDb
 
 app = Flask(__name__)
 
@@ -13,9 +12,9 @@ def landing_page():
 def display_stats():
     text = request.form['showname']
     from showstats import create_chart
-    chart = create_chart(text)
+    chart, title = create_chart(text)
 
-    return render_template('statspage.html', plot=chart)
+    return render_template('statspage.html', plot=chart, show_name=title)
     #return str(chart)
 
 

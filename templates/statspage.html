@@ -8,13 +8,12 @@
 </head>
 </head>
 <body>
-
+    <h1>{{ show_name }}</h1>
 </body>
-
-    <div class="chart" id="bargraph">
+    <div class="chart" id="linegraph">
     <script>
         var graphs = {{plot | safe}};
-        Plotly.plot('bargraph',graphs,{});
+        Plotly.plot('linegraph',graphs,{});
     </script>
 </div>
 </html>
