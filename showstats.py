@@ -25,7 +25,7 @@ def create_chart(search):
             if x[0] is None or y[0] is None:
                 break
             fig.add_trace(go.Scatter(x=x, y=y, name=f'Season {season_nr}',
-                                     line=dict(color=get_rand_color(), width=4)))
+                                     line=dict(color=get_random_color(), width=4)))
 
         fig.update_layout(
                           xaxis_title='Episode',
@@ -47,7 +47,7 @@ def create_chart(search):
         return str(e)
 
 
-def get_rand_color():
+def get_random_color():
     import matplotlib, random
 
     hex_colors_dic = {}
