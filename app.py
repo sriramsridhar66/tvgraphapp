@@ -15,7 +15,6 @@ def display_stats():
     chart, title = create_chart(text)
 
     return render_template('statspage.html', plot=chart, show_name=title)
-    #return str(chart)
 
 
 # check if input is an actual tv show, if not tell user, if it is, show graphs
