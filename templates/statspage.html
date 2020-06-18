@@ -12,10 +12,16 @@
 <body>
     <h1>{{ show_name }}</h1>
 </body>
-    <div class="chart" id="linegraph">
+    <div class="overlaychart" id="overlaylinegraph">
     <script>
-        var graphs = {{plot | safe}};
-        Plotly.plot('linegraph',graphs,{});
+        var overlaygraph = {{overlay_plot | safe}};
+        Plotly.plot('overlaylinegraph',overlaygraph,{});
+    </script>
+</div>
+    <div class="sequentialchart" id="sequentiallinegraph">
+    <script>
+        var sequentalgraph = {{sequential_plot | safe}};
+        Plotly.plot('sequentiallinegraph',sequentalgraph,{});
     </script>
 </div>
 </html>

@@ -14,9 +14,9 @@ def display_stats():
     from showstats import create_chart, get_series
 
     series = get_series(text)
-    chart = create_chart(series)
+    overlay_chart, sequential_chart = create_chart(series)
 
-    return render_template('statspage.html', plot=chart, show_name=str(series))
+    return render_template('statspage.html', overlay_plot=overlay_chart, sequential_plot=sequential_chart, show_name=str(series))
 
 
 # check if input is an actual tv show, if not tell user, if it is, show graphs
